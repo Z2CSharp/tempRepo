@@ -1,0 +1,12 @@
+﻿using System;
+using System.Threading.Tasks;
+using MovieReviews.Models;
+
+namespace MovieReviews.Database
+{
+    public interface IUserRepository
+    {
+        Task<User> GetUserByIdAsync(Guid userId);
+        Task<User> AddAccountToUserAsync(Guid userId, Account account);
+    }
+}

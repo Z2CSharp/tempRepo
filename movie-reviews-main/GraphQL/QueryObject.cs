@@ -40,7 +40,7 @@ namespace MovieReviews.GraphQL
                         Name = "userId",
                         Description = "The unique GUID of the user."
                     }),
-                    context => repository.GetUserByIdAsync(context.GetArgument("userid", Guid.Empty)));
+                    context => repository.GetUserByIdAsync(context.GetArgument("userId", Guid.Empty)));
         }
     }
 }

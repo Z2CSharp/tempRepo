@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace MovieReviews.Models
 {
@@ -8,6 +9,7 @@ namespace MovieReviews.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Phone { get; set; }
+        [Key]
         public Guid UserId { get; set; }
         public List<Account> Accounts { get; set; }
 

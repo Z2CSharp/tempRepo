@@ -13,7 +13,11 @@ namespace MovieReviews.GraphQL.Types
             Field(r => r.AccountId).Description("Id of the account");
             Field(r => r.BalanceRemaining).Description("Balance remaining on this account");
             Field(r => r.UserId).Description("UserId of the account holder");
-            Field(r => r.Transactions).Description("Transactions attached to this account");
+            Field(
+                name: "Transactions",
+                description: "Transactions of this account",
+                type: typeof(ListGraphType<TransactionObject>),
+                resolve: m => m.Source.Transactions);
         }
     }
 }

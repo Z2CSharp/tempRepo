@@ -3,6 +3,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using MovieReviews.Models;
+using MovieReviews.Database;
+using System.Collections.Generic;
 
 namespace MovieReviews.Database
 {
@@ -25,6 +27,14 @@ namespace MovieReviews.Database
         {
             var user = await _context.User.Where(m => m.UserId == userId).FirstOrDefaultAsync();
             user.AddAccount(account);
+            await _context.SaveChangesAsync();
+            return user;
+        }
+
+        public async Task<User> RemoveAccountFromUserAsync(Guid userId, Guid accountId)
+        {
+            var user = await _context.User.Where(m => m.UserId == userId).FirstOrDefaultAsync();
+            user.RemoveAccount(accountId);
             await _context.SaveChangesAsync();
             return user;
         }

@@ -8,5 +8,6 @@ namespace MovieReviews.Database
     {
         Task<User> GetUserByIdAsync(Guid userId);
         Task<User> AddAccountToUserAsync(Guid userId, Account account);
+        Task<User> RemoveAccountFromUserAsync(Guid userId, Guid accountId);
     }
 }

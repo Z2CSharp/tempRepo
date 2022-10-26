@@ -11,12 +11,31 @@ namespace MovieReviews.Models
         public Guid AccountId { get; set; }
         [ForeignKey("User")]
         public Guid UserId { get; set; }
-        public List<Transaction> Transactions { get; set;}
+        public User User{ get; set; }
         public double BalanceRemaining { get; set;}
 
-        public void AddTransaction(Transaction transaction)
+        // public Account(Guid accountId, Guid userId, double balanceRemaining, List<Transaction> transactions)
+        // {
+        //     AccountId = accountId;
+        //     UserId = userId;
+        //     BalanceRemaining = balanceRemaining;
+        //     Transactions = transactions;
+        // }
+        // public Account(Guid accountId, Guid userId, double balanceRemaining)
+        // {
+        //     AccountId = accountId;
+        //     UserId = userId;
+        //     BalanceRemaining = balanceRemaining;
+        // }
+
+        public Account()
         {
-            Transactions.Add(transaction);
+
         }
+
+        // public void AddTransaction(Transaction transaction)
+        // {
+        //     Transactions.Add(transaction);
+        // }
     }
 }

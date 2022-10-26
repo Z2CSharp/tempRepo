@@ -47,7 +47,7 @@ namespace MovieReviews.GraphQL
                 new QueryArguments(
                     new QueryArgument<NonNullGraphType<IdGraphType>>
                     {
-                        Name = "userid",
+                        Name = "userId",
                         Description = "The unique GUID of the User."
                     },
                     /*new QueryArgument<NonNullGraphType<ReviewInputObject>>
@@ -63,10 +63,33 @@ namespace MovieReviews.GraphQL
                 ),
             context =>
             {
-                var userId = context.GetArgument<Guid>("userid");
+                var userId = context.GetArgument<Guid>("userId");
                 var account = context.GetArgument<Account>("account");
                 return repository.AddAccountToUserAsync(userId, account);
             });
+
+            FieldAsync<UserObject, User>(
+                "removeAccount",
+                "Remove an account attached to a user.",
+                new QueryArguments(
+                    new QueryArgument<NonNullGraphType<IdGraphType>>
+                    {
+                        Name = "userId",
+                        Description = "The unique GUID of the user."
+                    },
+                    new QueryArgument<NonNullGraphType<IdGraphType>>
+                    {
+                        Name = "accountId",
+                        Description = "Account to be removed."
+                    }
+                ),
+                context =>
+                {
+                    var userId = context.GetArgument<Guid>("userId");
+                    var accountId = context.GetArgument<Guid>("accountId");
+                    return repository.RemoveAccountFromUserAsync(userId, accountId);
+                }
+            );
         }
     }
 }
